@@ -97,6 +97,7 @@ color_scale <- c(
                   "#c5b7c3")
 bg_color <- '#18291e'
 
+# reverse y-axis so it goes top to bottom to illustrate the shrinkage
 polygon_df_all$y_rev <- polygon_df_all$y * (-1)
 
 # get mean y-axis of each year for alignment
@@ -105,7 +106,7 @@ year_coords <- polygon_df_all |>
   summarize(mean_y = mean(y_rev)) |>
   mutate(text_label = paste0(year, 's'))
 
-# keep only latest and oldest data
+# keep only latest and oldest data labels
 year_coords_display <- filter(year_coords, text_label == '1980s' | text_label == '2020s')
 
 ggplot() +

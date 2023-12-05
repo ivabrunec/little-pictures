@@ -110,9 +110,10 @@ year_coords <- polygon_df_all |>
 year_coords_display <- filter(year_coords, text_label == '1980s' | text_label == '2020s')
 
 ggplot() +
-  geom_polygon(data = polygon_df_all, 
+  ggfx::with_shadow(geom_polygon(data = polygon_df_all, 
                aes(x = x, y = y_rev, fill = year, group = year),
-               color = bg_color, linewidth = .5) +
+               color = bg_color, linewidth = .5),
+               color = '#212C25') +
   geom_text(data = year_coords_display,
              aes(x = -2, y = mean_y, label = text_label),
              color = '#F2edd5',
@@ -127,5 +128,5 @@ ggplot() +
                              b = 50,  
                              l = 10))
 
-ggsave('ArcticSeaIce.png', height = 6, width = 5, dpi = 400)
+ggsave('ArcticSeaIce2.png', height = 6, width = 5, dpi = 400)
 
